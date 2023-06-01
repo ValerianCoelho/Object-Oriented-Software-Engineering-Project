@@ -1,11 +1,9 @@
 from customtkinter import *
 
-def optionmenu_callback(choice):
-    print("optionmenu dropdown clicked:", choice)
-
 def report():
     def submitReport():
-        pass
+        reportFrame.pack_forget()
+        homeFrame.pack(padx = 20, pady = 20)
 
     homeFrame.pack_forget()
 
@@ -41,7 +39,8 @@ def incident():
 
 def donate():
     def submitDonate():
-        pass
+        donateFrame.pack_forget()
+        homeFrame.pack(padx = 20, pady = 20)
 
     homeFrame.pack_forget()
 
@@ -54,13 +53,13 @@ def donate():
     nameField = CTkLabel(donateFrame, text = "Name: ")
     nameField.grid(padx = 10, pady = 10, row = 1, column = 0)
 
-    nameInput = CTkEntry(donateFrame, placeholder_text = "John", width=200)
+    nameInput = CTkEntry(donateFrame, placeholder_text = "John Doe", width=200)
     nameInput.grid(padx = 10, pady = 10, row = 1, column = 1)
 
     emailField = CTkLabel(donateFrame, text = "Email: ")
     emailField.grid(padx = 10, pady = 10, row = 2, column = 0)
 
-    emailInput = CTkEntry(donateFrame, placeholder_text = "youremail@gmail.com", width=200)
+    emailInput = CTkEntry(donateFrame, placeholder_text = "johndoe@example.com", width=200)
     emailInput.grid(padx = 10, pady = 10, row = 2, column = 1)
 
     amountField = CTkLabel(donateFrame, text = "Amount: ")
@@ -85,15 +84,15 @@ titleField = CTkLabel(homeFrame, text = "Natural Disaster Management", font=CTkF
 titleField.grid(padx = 10, pady = (25, 10), row = 0, column = 0, columnspan=2)
 
 reportBtn = CTkButton(homeFrame, text = "Report Natural Disaster", command=report, width=150, height=50)
-reportBtn.grid(padx = 30, pady = 20, row = 1, column = 0)
+reportBtn.grid(padx = (30, 10), pady = 20, row = 1, column = 0)
 
 incidentBtn = CTkButton(homeFrame, text = "View Incident Log", command=incident, width=150, height=50)
-incidentBtn.grid(padx = 30, pady = 20, row = 1, column = 1)
+incidentBtn.grid(padx = (10, 30), pady = 20, row = 1, column = 1)
 
 donateBtn = CTkButton(homeFrame, text = "Donate Resources", command=donate, width=150, height=50)
-donateBtn.grid(padx = 30, pady = (15, 30), row = 2, column = 0)
+donateBtn.grid(padx = (30, 10), pady = (15, 30), row = 2, column = 0)
 
 resourceBtn = CTkButton(homeFrame, text = "Check Resource Availability", command=donations, width=150, height=50)
-resourceBtn.grid(padx = 30, pady = (15, 30), row = 2, column = 1)
+resourceBtn.grid(padx = (10, 30), pady = (15, 30), row = 2, column = 1)
 
 window.mainloop()
