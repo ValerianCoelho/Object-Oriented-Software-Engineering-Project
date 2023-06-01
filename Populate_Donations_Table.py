@@ -1,7 +1,7 @@
 import sqlite3
 
 # Connect to the database
-conn = sqlite3.connect('donations_data.db')
+conn = sqlite3.connect('Natural_Disaster_Management.db')
 cursor = conn.cursor()
 
 # Create the table if it doesn't exist
