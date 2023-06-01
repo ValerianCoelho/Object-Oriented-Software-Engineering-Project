@@ -40,7 +40,37 @@ def incident():
     print('Incident')
 
 def donate():
-    print('Donate')
+    def submitDonate():
+        pass
+
+    homeFrame.pack_forget()
+
+    donateFrame = CTkFrame(window)
+    donateFrame.pack(padx = 20, pady = 20)
+
+    donateField = CTkLabel(donateFrame, text = "Support Disaster Victims", font=CTkFont(size=15, weight="bold"))
+    donateField.grid(padx = 10, pady = 10, row = 0, column = 0, columnspan=2)
+
+    nameField = CTkLabel(donateFrame, text = "Name: ")
+    nameField.grid(padx = 10, pady = 10, row = 1, column = 0)
+
+    nameInput = CTkEntry(donateFrame, placeholder_text = "John", width=200)
+    nameInput.grid(padx = 10, pady = 10, row = 1, column = 1)
+
+    emailField = CTkLabel(donateFrame, text = "Email: ")
+    emailField.grid(padx = 10, pady = 10, row = 2, column = 0)
+
+    emailInput = CTkEntry(donateFrame, placeholder_text = "youremail@gmail.com", width=200)
+    emailInput.grid(padx = 10, pady = 10, row = 2, column = 1)
+
+    amountField = CTkLabel(donateFrame, text = "Amount: ")
+    amountField.grid(padx = 10, pady = 10, row = 3, column = 0)
+
+    amountInput = CTkEntry(donateFrame, placeholder_text = "$20", width=200)
+    amountInput.grid(padx = 10, pady = 10, row = 3, column = 1)
+
+    submitDonateBtn = CTkButton(donateFrame, text = "Donate", command=submitDonate)
+    submitDonateBtn.grid(padx = 10, pady = 10, row = 4, column = 0, columnspan=2)
 
 def donations():
     print('Resources')
