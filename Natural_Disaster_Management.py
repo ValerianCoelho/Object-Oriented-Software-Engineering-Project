@@ -1,4 +1,23 @@
+import sqlite3
 from customtkinter import *
+
+conn = sqlite3.connect('Natural_Disaster_Management.db')
+cursor = conn.cursor()
+
+class Table:
+    def __init__(self, root, Headers, Entries):
+        rows = len(Entries)
+        cols = len(Entries[0])
+        for i in range(cols):
+            self.e = CTkButton(root, text=Headers[i], width=180)
+            self.e.grid(row=1, column=i, padx=2, pady=2)
+            
+        for i in range(rows):
+            for j in range(cols):
+                self.e = CTkEntry(root, justify='center', width=180)
+                self.e.grid(row = i+2, column = j, padx=2, pady=2)
+                self.e.insert(END, Entries[i][j])
+                self.e.configure(state='disabled')
 
 def report():
     def submitReport():
@@ -35,7 +54,23 @@ def report():
     submitReportBtn.grid(padx = 10, pady = 10, row = 4, column = 0, columnspan=2)
     
 def incident():
-    print('Incident')
+    def back():
+        incidentFrame.pack_forget()
+        homeFrame.pack(padx = 20, pady = 20)
+
+    cursor.execute("SELECT * FROM disaster")
+    homeFrame.pack_forget()
+
+    incidentFrame = CTkFrame(window)
+    incidentFrame.pack(padx = 20, pady = 20)
+
+    disasterField = CTkLabel(incidentFrame, text = "Natural Disasters", font=CTkFont(size=15, weight="bold"))
+    disasterField.grid(padx = 10, pady = 10, row = 0, column = 0, columnspan=7)
+
+    table = Table(incidentFrame, ['ID', 'Type', 'Location', 'Severity', 'Year', 'Month', 'Day'], cursor.fetchall())
+
+    backBtn = CTkButton(incidentFrame, text = "Back", command=back)
+    backBtn.grid(padx = 10, pady = 10, columnspan=7)
 
 def donate():
     def submitDonate():
@@ -72,7 +107,23 @@ def donate():
     submitDonateBtn.grid(padx = 10, pady = 10, row = 4, column = 0, columnspan=2)
 
 def donations():
-    print('Resources')
+    def back():
+        donationsFrame.pack_forget()
+        homeFrame.pack(padx = 20, pady = 20)
+
+    cursor.execute("SELECT * FROM donations")
+    homeFrame.pack_forget()
+
+    donationsFrame = CTkFrame(window)
+    donationsFrame.pack(padx = 20, pady = 20)
+
+    disasterField = CTkLabel(donationsFrame, text = "Donations", font=CTkFont(size=15, weight="bold"))
+    disasterField.grid(padx = 10, pady = 10, row = 0, column = 0, columnspan=5)
+
+    table = Table(donationsFrame, ['ID', 'Name', 'Email', 'Amount', 'Country'], cursor.fetchall())
+
+    backBtn = CTkButton(donationsFrame, text = "Back", command=back)
+    backBtn.grid(padx = 10, pady = 10, columnspan=5)
 
 
 window = CTk()
