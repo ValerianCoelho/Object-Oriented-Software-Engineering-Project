@@ -124,8 +124,9 @@ def donate():
 
         # Insert the data into the 'donations' table
         cursor.execute(f"""INSERT INTO donations (Name, Email, Amount, Country)
-                           VALUES ('{name}', '{email}', {amount}, '{country}');
+                           VALUES ('{name}', '{email}', '{amount}', '{country}');
                         """)
+        
         connect.commit()
         
         # Reset the form and go back to the home frame
