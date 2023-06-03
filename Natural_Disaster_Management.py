@@ -197,6 +197,9 @@ def donations():
 # Create the main window
 window = CTk()
 
+# Setting Title
+window.title("  Natural Disaster Management")
+
 # Create the home frame
 homeFrame = CTkFrame(window)
 homeFrame.pack(padx=20, pady=20)
