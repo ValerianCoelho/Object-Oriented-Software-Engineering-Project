@@ -67,7 +67,7 @@ def incident():
     disasterField = CTkLabel(incidentFrame, text = "Natural Disasters", font=CTkFont(size=15, weight="bold"))
     disasterField.grid(padx = 10, pady = 10, row = 0, column = 0, columnspan=7)
 
-    table = Table(incidentFrame, ['ID', 'Type', 'Location', 'Severity', 'Year', 'Month', 'Day'], cursor.fetchall())
+    Table(incidentFrame, ['ID', 'Type', 'Location', 'Severity', 'Year', 'Month', 'Day'], cursor.fetchall())
 
     backBtn = CTkButton(incidentFrame, text = "Back", command=back)
     backBtn.grid(padx = 10, pady = 10, columnspan=7)
@@ -120,11 +120,10 @@ def donations():
     disasterField = CTkLabel(donationsFrame, text = "Donations", font=CTkFont(size=15, weight="bold"))
     disasterField.grid(padx = 10, pady = 10, row = 0, column = 0, columnspan=5)
 
-    table = Table(donationsFrame, ['ID', 'Name', 'Email', 'Amount', 'Country'], cursor.fetchall())
+    Table(donationsFrame, ['ID', 'Name', 'Email', 'Amount', 'Country'], cursor.fetchall())
 
     backBtn = CTkButton(donationsFrame, text = "Back", command=back)
     backBtn.grid(padx = 10, pady = 10, columnspan=5)
-
 
 window = CTk()
 
