@@ -1,8 +1,12 @@
 import sqlite3
 from customtkinter import *
+import datetime
 
-conn = sqlite3.connect('Natural_Disaster_Management.db')
-cursor = conn.cursor()
+connect = sqlite3.connect('Natural_Disaster_Management.db')
+cursor = connect.cursor()
+currentTime = datetime.datetime.now()
+
+months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 class Table:
     def __init__(self, root, Headers, Entries):
@@ -21,6 +25,17 @@ class Table:
 
 def report():
     def submitReport():
+        disasterType = disasterTypeInput.get()
+        disasterLocation = disasterLocationInput.get()
+        disasterMagnitude = disasterMagnitudeInput.get()
+        year = currentTime.year
+        month = months[currentTime.month-1]
+        day = currentTime.day
+
+        cursor.execute(f"""INSERT INTO disaster (Type, Location, Severity, Year, Month, Day)
+                           VALUES ('{disasterType}', '{disasterLocation}', '{disasterMagnitude}', {year}, '{month}', {day});
+                        """)
+        connect.commit()
         reportFrame.pack_forget()
         homeFrame.pack(padx = 20, pady = 20)
 
@@ -74,6 +89,16 @@ def incident():
 
 def donate():
     def submitDonate():
+        name = nameInput.get()
+        email = emailInput.get()
+        amount = amountInput.get()
+        country = countryInput.get()
+
+        cursor.execute(f"""INSERT INTO donations (Name, Email, Amount, Country)
+                           VALUES ('{name}', '{email}', {amount}, '{country}');
+                        """)
+        connect.commit()
+
         donateFrame.pack_forget()
         homeFrame.pack(padx = 20, pady = 20)
 
@@ -103,8 +128,14 @@ def donate():
     amountInput = CTkEntry(donateFrame, placeholder_text = "$20", width=200)
     amountInput.grid(padx = 10, pady = 10, row = 3, column = 1)
 
+    countryField = CTkLabel(donateFrame, text = "Country: ")
+    countryField.grid(padx = 10, pady = 10, row = 4, column = 0)
+
+    countryInput = CTkEntry(donateFrame, placeholder_text = "India", width=200)
+    countryInput.grid(padx = 10, pady = 10, row = 4, column = 1)
+
     submitDonateBtn = CTkButton(donateFrame, text = "Donate", command=submitDonate)
-    submitDonateBtn.grid(padx = 10, pady = 10, row = 4, column = 0, columnspan=2)
+    submitDonateBtn.grid(padx = 10, pady = 10, row = 5, column = 0, columnspan=2)
 
 def donations():
     def back():
