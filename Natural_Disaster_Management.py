@@ -98,7 +98,6 @@ def donate():
                            VALUES ('{name}', '{email}', {amount}, '{country}');
                         """)
         connect.commit()
-
         donateFrame.pack_forget()
         homeFrame.pack(padx = 20, pady = 20)
 
