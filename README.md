@@ -9,9 +9,7 @@ This project is a graphical user interface (GUI) application for managing natura
 - Donate resources by entering your name, email, donation amount, and country.
 - Check resource availability to see the list of donations made.
 
-## Screenshots
-
-Include relevant screenshots of each window or interface here. You can add them directly in the README file or create a separate folder named "screenshots" and reference the images in the Markdown.
+## Application UI
 
 ### Home Window
 
